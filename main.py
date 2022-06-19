@@ -43,7 +43,6 @@ def update():
             body={'values': values}).execute()
     except:
         print("Неверный формат ввода. Введите ячейку в формате S1 и значения через пробел")
-        print(values)
         update()
 
 
