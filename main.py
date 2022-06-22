@@ -10,10 +10,14 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_FILE,
 httpAuth = credentials.authorize(httplib2.Http())
 service = discovery.build('sheets', 'v4', http = httpAuth)
 spreadsheetId = '1LYFBOIXZ6Tk9rH8QI33Sev8OwTu93bfCy-1aSUbTCPg'
-
+spreadsheet = service.spreadsheets().get(spreadsheetId=spreadsheetId).execute()
+sheetList = spreadsheet.get('sheets')
 
 def append():
-    range = 'Лист1!'
+    print("Выберите лист, с которым хотите работать ")
+    for sheet in sheetList:
+        print("-" + sheet['properties']['title'])
+    range = input() + "!"
     print("Введите значения")
     values = [list(map(str, input().split()))]
     print("Введите ячейку")
@@ -25,12 +29,15 @@ def append():
             valueInputOption="USER_ENTERED",
             body={'values': values}).execute()
     except :
-        print("Неверный формат ввода. Введите ячейку в формате S1 и значения через пробел")
+        print("Неверный формат ввода.")
         append()
 
 
 def update():
-    range = 'Лист1!'
+    print("Выберите лист, с которым хотите работать ")
+    for sheet in sheetList:
+        print(sheet['properties']['title'])
+    range = input() + "!"
     print("Введите значения")
     values = [list(map(str, input().split()))]
     print("Введите ячейку")
@@ -42,12 +49,15 @@ def update():
             valueInputOption="USER_ENTERED",
             body={'values': values}).execute()
     except:
-        print("Неверный формат ввода. Введите ячейку в формате S1 и значения через пробел")
+        print("Неверный формат ввода.")
         update()
 
 
 def delete():
-    range = 'Лист1!'
+    print("выберите лист, с которым хотите работать ")
+    for sheet in sheetList:
+        print(sheet['properties']['title'])
+    range = input() + "!"
     print("Введите ячейку или диапазон")
     range += input()
     try:
