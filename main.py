@@ -36,7 +36,7 @@ def append():
 def update():
     print("Выберите лист, с которым хотите работать ")
     for sheet in sheetList:
-        print(sheet['properties']['title'])
+        print("-" + sheet['properties']['title'])
     range = input() + "!"
     print("Введите значения")
     values = [list(map(str, input().split()))]
@@ -56,7 +56,7 @@ def update():
 def delete():
     print("выберите лист, с которым хотите работать ")
     for sheet in sheetList:
-        print(sheet['properties']['title'])
+        print("-" + sheet['properties']['title'])
     range = input() + "!"
     print("Введите ячейку или диапазон")
     range += input()
