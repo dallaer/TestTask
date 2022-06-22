@@ -14,7 +14,7 @@ spreadsheet = service.spreadsheets().get(spreadsheetId=spreadsheetId).execute()
 sheetList = spreadsheet.get('sheets')
 
 def append():
-    print("Выберите лист, с которым хотите работать ")
+    print("Введите название листа, с которым хотите работать:")
     for sheet in sheetList:
         print("-" + sheet['properties']['title'])
     range = input() + "!"
@@ -34,7 +34,7 @@ def append():
 
 
 def update():
-    print("Выберите лист, с которым хотите работать ")
+    print("Введите название листа, с которым хотите работать:")
     for sheet in sheetList:
         print("-" + sheet['properties']['title'])
     range = input() + "!"
@@ -54,7 +54,7 @@ def update():
 
 
 def delete():
-    print("выберите лист, с которым хотите работать ")
+    print("Введите название листа, с которым хотите работать:")
     for sheet in sheetList:
         print("-" + sheet['properties']['title'])
     range = input() + "!"
